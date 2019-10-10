@@ -4,3 +4,5 @@
 
 ### 一、SqlSessionFactory的创建
 
+![](https://github.com/heartccace/mybatis/blob/master/src/main/resources/images/sqlSessionFactory创建.jpg)
+
