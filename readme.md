@@ -6,7 +6,7 @@
 
 ![](https://github.com/heartccace/mybatis/blob/master/src/main/resources/images/sqlSessionFactory创建.jpg)
 
-1. 首先根据SqlSessionFactoryBuilder对象加载mybatis-config.xml的config资源文件并创建XMLConfigBuilder来解析文件；
+1. 首先根据SqlSessionFactoryBuilder对象加载mybatis-config.xml的config资源文件并创建XMLConfigBuilder来解析文件；（此处XMLConfigBuilder和XMLMapperBuilder使用的是建造者模式）
 
    ```
     public SqlSessionFactory build(InputStream inputStream, String environment, Properties properties) {
@@ -14,6 +14,7 @@
         //通过XMLConfigBuilder来解析文件
          XMLConfigBuilder parser = new XMLConfigBuilder(inputStream, environment, properties);
          //parser.parse()解析后产生一个Configuration对象
+         // 在XMLConfigBuilder中使用XMLMapperBuilder解析Mapper文件
          // Configuration 包含配置文件的所有信息包含了mapper文件
          //其中Configuration中的mappedStatements属性存储着所有的sql语句
          return build(parser.parse());
@@ -30,6 +31,8 @@
      }
    ```
 
+   mapper中的sql语句被组装成MappedStatement保存在MappedStatements（map类型）其中key为namespace+id，
+
    
 
-2. 
+2. mapper中的sql语句被组装成MappedStatements（map类型）其中key为namespace+id
