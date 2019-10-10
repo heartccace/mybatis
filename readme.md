@@ -35,4 +35,8 @@
 
    
 
-2. mapper中的sql语句被组装成MappedStatements（map类型）其中key为namespace+id
+2. SqlSession对象应用过程分析（是实现与数据库进行会话的入口）
+
+   ![] (https://github.com/heartccace/mybatis/blob/master/src/main/resources/images/sqlsession.jpg)
+
+3. 
