@@ -70,12 +70,14 @@
   ```
 
 - PreparedStatementHandler调用ParameterHandler对参数进行处理
-
 - ParameterHandler则调用相应的参数处理器
-
 - 最后PreparedStatementHandler调用DefaultResultSetHandler处理查询结果（可能也会调用参参数处理器将jdbc类型转换成java数据类型，发生在结果处理之前）
 
-  
+1. ##### SqlSession -> getMapper(*.class)执行原理（采用代理模式）
+
+   - 
+
+
 
 ### 三、类型转换器(TypeHandler)的应用
 
@@ -93,6 +95,8 @@
 
 ​		拦截器的实现：实现接口Interceptor并对拦截对象进行描述
 
+​		配置：在实现类上增加类方法签名@Interceptors(@Signature(type=类名.class),method="具体业务方法", args={*.class})
+
 ​		使用：在mybatis的配置文件中通过plugin标签进行配置
 
 ​		创建：Mybatis框架初始化时会创建拦截器对象然后添加到拦截器链
@@ -100,3 +104,7 @@
 ​		拦截器对象应用过程分析：
 
 ​			Mybatis会在Executor、StatementHandler、ResultSetHandler、ParameterHandler对象 创			建时，加入拦截器的定义指定为对象创建代理对象，并在执行代理对象业务时，会执行				Inteceptor的intercept方法
+
+​			原理图：
+
+​			![](https://github.com/heartccace/mybatis/blob/master/src/main/resources/images/拦截器执行原理.jpg)
